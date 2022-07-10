@@ -61,4 +61,43 @@ efeito dessa carta para o próximo jogador que deverá pegar 8 cartas (2 vezes 4
 A baixo teremos como ficará o "desenho" de cada carta no terminal, assim o jogador conseguirá identificar qual carta ao 
 jogador tem na mão e jogou.
 
-> TODO: Ainda por fazer.
+As cartas devem seguir o seguinte padrão:
+```
+_____
+| Vc|
+_____
+```
+Onde `V` é **sempre maísculo** e representa o valor da carta. Contempla os seguintes valores:
+
+- `0 a 9`: Números qualquer, (por enquanto) sem nenhuma habilidade especial;
+- `R`: Carta de inversão de sentido;
+- `+2`: Carta de +2;
+- `B`: Carta de Pular;
+- `J`: Carta de joker para troca de cor;
+- `+4`: Carta de joker para troca de cor e +4.
+
+O `c` é sempre minusculo e representa as cores, onde temos as 4 mais 1 que represtenta cor nenhuma. São elas:
+
+- `r`: Vermelho (red);
+- `g`: Verde (green);
+- `b`: Azul (blue);
+- `y`: Amarelo (yellow);
+- `x`: Sem cor.
+
+**Exemplo:**
+
+Na mão desse jogador nós temos a seguinte saída no terminal:
+```
+  1  |  2  |  3  |  4  |  5  |  6  
+_____ _____ _____ _____ _____ _____
+| Ry| | Jx| |+4x| |+2r| | 8b| | Bb|
+_____ _____ _____ _____ _____ _____
+```
+Respectivamente temos as seguintes cartas:
+
+1. Carta de inversão de sentido da cor amarela;
+2. Carta de joker para troca de cor;
+3. Carta de joker para troca de cor e +4;
+4. Carta de +2 da cor vermelha;
+5. Carta 8 da cor azul;
+6. Carta de pular da cor azul.
