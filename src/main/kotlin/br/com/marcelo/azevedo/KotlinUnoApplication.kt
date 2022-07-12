@@ -1,9 +1,9 @@
 package br.com.marcelo.azevedo
 
-import br.com.marcelo.azevedo.gui.Game
+import br.com.marcelo.azevedo.gui.GameUI
+import br.com.marcelo.azevedo.service.DeckService
+import br.com.marcelo.azevedo.service.PlayerService
 
-class KotlinUnoApplication
-
-fun main(args: Array<String>) {
-    println(Game().getPlayers().map { player -> player.name })
+fun main() {
+    println(GameUI(playerService = PlayerService(), deckService = DeckService()).start())
 }

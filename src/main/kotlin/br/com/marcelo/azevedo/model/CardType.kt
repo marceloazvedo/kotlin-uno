@@ -1,7 +1,12 @@
 package br.com.marcelo.azevedo.model
 
-enum class CardType {
+enum class CardType(val typePrefix: String) {
 
-    NUMBER, BLOCK, REVERT, JOKER, JOKER_PLUS_FOUR, PLUS_TWO
+    NUMBER("X"),
+    BLOCK("B"),
+    REVERT("R"),
+    JOKER("J"),
+    JOKER_PLUS_FOUR("+4"),
+    PLUS_TWO("+2")
 
 }
