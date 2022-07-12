@@ -6,12 +6,11 @@ import br.com.marcelo.azevedo.service.DeckService
 import br.com.marcelo.azevedo.service.PlayerService
 import br.com.marcelo.azevedo.util.QUIT_PLAYER_SELECTION
 
-class GameUI(
-    private val playerService: PlayerService,
-    private val deckService: DeckService,
-) {
+class GameUI {
 
     private val cardUI = CardUI()
+    private val playerService = PlayerService()
+    private val deckService = DeckService()
 
     private fun getPlayersName(): List<String> {
 
@@ -40,17 +39,46 @@ class GameUI(
     }
 
     private fun startRound(players: List<Player>, deck: Deck) {
-        println(deck.cards.size)
         println("Ok, let's start our game!")
         var count = 0
 
         do {
             val playerInTurn = players[count]
-            println("Is turn of ${playerInTurn.name}")
+            println("""
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                Is turn of ${playerInTurn.name}
+            """.trimIndent())
             println(cardUI.printCards(playerInTurn.cards))
-            val input = readln()
-            count++
-            if (count >= players.size) count = 0
+            print("Please, select your card ${playerInTurn.name}: ")
+            try {
+                val cardIndex = readln().toInt() -1
+                val card = playerInTurn.cards[cardIndex]
+                playerInTurn.cards.removeAt(cardIndex)
+                count++
+                if (count >= players.size) count = 0
+            } catch (_: Exception) {
+                println("""
+                    
+                    
+                    
+                    
+                    
+                    
+                    ## WARNING ##
+                    Plase, select a valid index for your card.
+                    #############
+                """.trimIndent())
+            }
         } while (true)
 
     }

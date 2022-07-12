@@ -7,13 +7,21 @@ class CardUI {
 
     fun printCards(cards: List<Card>): String {
 
+        val indexTop = List(cards.size) { index -> indexTop(index) }.reduce { acc, s -> acc + s }
         val cardsOutputTop = cards.map { cardDelimiterTop() }.reduce { acc, s -> acc + s }
         val cardsOutputContent = cards.map { card -> cardContent(card) }.reduce { acc, s -> acc + s }
         val cardsOutputBottom = cards.map { cardDelimiterBottom() }.reduce { acc, s -> acc + s }
 
 
-        return "${cardsOutputTop}\n${cardsOutputContent}\n${cardsOutputBottom}"
+        return """
+            $indexTop
+            $cardsOutputTop
+            $cardsOutputContent
+            $cardsOutputBottom
+        """.trimIndent()
     }
+
+    private fun indexTop(index: Int): String = "|%03d| ".format(index + 1)
 
     private fun cardDelimiterTop(): String = "_____ "
 

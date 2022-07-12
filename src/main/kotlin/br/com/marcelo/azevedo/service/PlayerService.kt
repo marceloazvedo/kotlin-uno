@@ -12,7 +12,7 @@ class PlayerService {
             deck.cards = deck.cards.drop(QUANTITY_CARDS_PLAYERS_START).toMutableList()
             Player(
                 name = it,
-                cards = playerCards,
+                cards = playerCards.toMutableList(),
             )
         }
     }
