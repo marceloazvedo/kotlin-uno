@@ -1,8 +1,8 @@
 package br.com.marcelo.azevedo.gui
 
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.CardColor
-import br.com.marcelo.azevedo.model.CardType
+import br.com.marcelo.azevedo.model.enums.CardColor
+import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.CARD_INVALID_VALUE
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -23,7 +23,7 @@ class CardUITest {
 
 
         val output = """
-            |001|
+            |001| 
             _____ 
             | 2b| 
             ----- 
@@ -43,7 +43,7 @@ class CardUITest {
 
 
         val output = """
-            |001|
+            |001| 
             _____ 
             |+4x| 
             ----- 
@@ -69,7 +69,7 @@ class CardUITest {
 
 
         val output = """
-            |001| |002|
+            |001| |002| 
             _____ _____ 
             | 5b| | 9y| 
             ----- ----- 
@@ -95,7 +95,7 @@ class CardUITest {
 
 
         val output = """
-            |001| |002|
+            |001| |002| 
             _____ _____ 
             |+4x| |+2y| 
             ----- ----- 
@@ -133,7 +133,7 @@ class CardUITest {
 
 
         val output = """
-            |001| |002| |003| |004|
+            |001| |002| |003| |004| 
             _____ _____ _____ _____ 
             |+4x| | 9b| | Jx| | 5r| 
             ----- ----- ----- ----- 

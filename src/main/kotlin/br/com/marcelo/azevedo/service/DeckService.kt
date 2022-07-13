@@ -1,8 +1,8 @@
 package br.com.marcelo.azevedo.service
 
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.CardColor
-import br.com.marcelo.azevedo.model.CardType
+import br.com.marcelo.azevedo.model.enums.CardColor
+import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.model.Deck
 import br.com.marcelo.azevedo.util.CARD_INVALID_VALUE
 import br.com.marcelo.azevedo.util.CARD_JOKER_SIZE

@@ -3,6 +3,7 @@ package br.com.marcelo.azevedo.gui
 import br.com.marcelo.azevedo.model.Deck
 import br.com.marcelo.azevedo.model.Player
 import br.com.marcelo.azevedo.service.DeckService
+import br.com.marcelo.azevedo.service.GameService
 import br.com.marcelo.azevedo.service.PlayerService
 import br.com.marcelo.azevedo.util.QUIT_PLAYER_SELECTION
 
@@ -11,6 +12,8 @@ class GameUI {
     private val cardUI = CardUI()
     private val playerService = PlayerService()
     private val deckService = DeckService()
+    private val gameService = GameService()
+    private val exceptionHandler = ExceptionHandler()
 
     private fun getPlayersName(): List<String> {
 
@@ -39,11 +42,11 @@ class GameUI {
     }
 
     private fun startRound(players: List<Player>, deck: Deck) {
-        println("Ok, let's start our game!")
-        var count = 0
+        val game = gameService.createGame(players, deck)
 
+        println("Ok, let's start our game!")
         do {
-            val playerInTurn = players[count]
+            val playerInTurn = game.playerInTurn
             println("""
                 
                 
@@ -55,29 +58,17 @@ class GameUI {
                 
                 
                 
-                
+                Card on top: ${cardUI.printCards(listOf(game.cardOfTurn()))}
                 Is turn of ${playerInTurn.name}
             """.trimIndent())
             println(cardUI.printCards(playerInTurn.cards))
-            print("Please, select your card ${playerInTurn.name}: ")
             try {
+                gameService.hasCardToPlay(game)
+                print("Please, select your card ${playerInTurn.name}: ")
                 val cardIndex = readln().toInt() -1
-                val card = playerInTurn.cards[cardIndex]
-                playerInTurn.cards.removeAt(cardIndex)
-                count++
-                if (count >= players.size) count = 0
-            } catch (_: Exception) {
-                println("""
-                    
-                    
-                    
-                    
-                    
-                    
-                    ## WARNING ##
-                    Plase, select a valid index for your card.
-                    #############
-                """.trimIndent())
+                gameService.playCard(game, cardIndex)
+            } catch (error: Exception) {
+                exceptionHandler.handlerWith(error)
             }
         } while (true)
 

@@ -11,3 +11,5 @@ const val CARD_JOKER_SIZE = 4
 const val QUIT_PLAYER_SELECTION = "quit"
 
 const val QUANTITY_CARDS_PLAYERS_START = 6
+
+const val EXIT_APPLICATION_INPUT = ".exit"

@@ -1,7 +1,7 @@
 package br.com.marcelo.azevedo.service
 
-import br.com.marcelo.azevedo.model.CardColor
-import br.com.marcelo.azevedo.model.CardType
+import br.com.marcelo.azevedo.model.enums.CardColor
+import br.com.marcelo.azevedo.model.enums.CardType
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -80,10 +80,10 @@ class DeckServiceTest {
         assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroRed.size)
         assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroYellow.size)
         assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroGreen.size)
-        assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroBlue.first().value)
-        assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroRed.first().value)
-        assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroYellow.first().value)
-        assertEquals(CARD_NUMBER_ZERO_SIZE, cardZeroGreen.first().value)
+        assertEquals(CARD_NUMBER_ZERO_VALUE, cardZeroBlue.first().value)
+        assertEquals(CARD_NUMBER_ZERO_VALUE, cardZeroRed.first().value)
+        assertEquals(CARD_NUMBER_ZERO_VALUE, cardZeroYellow.first().value)
+        assertEquals(CARD_NUMBER_ZERO_VALUE, cardZeroGreen.first().value)
 
     }
 

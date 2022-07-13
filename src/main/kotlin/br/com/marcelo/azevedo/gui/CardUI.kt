@@ -1,7 +1,7 @@
 package br.com.marcelo.azevedo.gui
 
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.CardType
+import br.com.marcelo.azevedo.model.enums.CardType
 
 class CardUI {
 

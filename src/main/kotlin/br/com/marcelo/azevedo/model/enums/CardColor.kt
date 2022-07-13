@@ -1,4 +1,4 @@
-package br.com.marcelo.azevedo.model
+package br.com.marcelo.azevedo.model.enums
 
 enum class CardColor(val colorPrefix: String) {
 
