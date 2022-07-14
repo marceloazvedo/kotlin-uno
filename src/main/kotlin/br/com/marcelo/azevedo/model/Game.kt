@@ -4,12 +4,16 @@ import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
 data class Game(
-    val direction: GameDirection = GameDirection.FORWARD,
+    var direction: GameDirection = GameDirection.FORWARD,
     var remainingCards: MutableList<Card>,
     var playedCards: MutableList<Card>,
     val players: List<Player>,
     var playerInTurn: Player,
-    val turnColor: CardColor,
+    var turnColor: CardColor,
+    var isSpecialEffectActive: Boolean = false,
+    var cardSelectToPlay: Card? = null,
 ) {
-    fun cardOfTurn(): Card = playedCards.last()
+
+    fun lastCardPlayed(): Card = playedCards.last()
+
 }

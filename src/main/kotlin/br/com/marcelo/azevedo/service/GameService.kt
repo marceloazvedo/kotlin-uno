@@ -18,19 +18,22 @@ class GameService {
             playerInTurn = players.first(),
             players = players,
             remainingCards = deck.cards.drop(1).toMutableList(),
-            playedCards = mutableListOf(firstGameCard)
+            playedCards = mutableListOf(firstGameCard),
+            turnColor = firstGameCard.color,
         )
     }
 
     fun playCard(game: Game, cardIndexPlayed: Int): Game {
-        val previousCard = game.cardOfTurn()
+        val previousCard = game.lastCardPlayed()
         val cardPlayed =
             try {
                 game.playerInTurn.cards[cardIndexPlayed]
             } catch (_: IndexOutOfBoundsException) {
                 throw InvalidCardIndexPlayed(cardIndexPlayed)
             }
-        validateCardPlayed(previousCard, cardPlayed)
+        validateCardToPlaay(previousCard, cardPlayed)
+
+        game.turnColor = cardPlayed.color
 
         if(cardPlayed.isSpecial()) activeSpecialEffect(game, cardPlayed)
 
@@ -41,7 +44,7 @@ class GameService {
         return game
     }
 
-    private fun validateCardPlayed(previousCard: Card, cardPlayed: Card) {
+    private fun validateCardToPlaay(previousCard: Card, cardPlayed: Card) {
         if (cardPlayed.cardType == CardType.NUMBER && !(previousCard.color == cardPlayed.color || previousCard.value == cardPlayed.value)) {
             throw InvalidCardPlayed(cardPlayed)
         }
@@ -65,10 +68,10 @@ class GameService {
     }
 
     fun hasCardToPlay(game: Game) {
-        val previousCard = game.cardOfTurn()
+        val previousCard = game.lastCardPlayed()
         val noHasCard: Boolean = game.playerInTurn.cards.none {
             val isValidCard = try {
-                validateCardPlayed(previousCard, it)
+                validateCardToPlaay(previousCard, it)
                 true
             } catch (_: Exception) {
                 false
@@ -94,7 +97,7 @@ class GameService {
     }
 
     private fun activeSpecialEffect(game: Game, cardPlayed: Card) {
-        
+
     }
 
 }

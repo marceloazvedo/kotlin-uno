@@ -1,4 +1,4 @@
-package br.com.marcelo.azevedo.gui
+package br.com.marcelo.azevedo.ui
 
 import br.com.marcelo.azevedo.exceptions.GetNewCardAndFisnishTurnException
 import br.com.marcelo.azevedo.exceptions.InvalidCardIndexPlayed

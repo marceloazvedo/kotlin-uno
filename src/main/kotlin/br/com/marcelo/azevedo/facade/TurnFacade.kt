@@ -1,4 +1,4 @@
 package br.com.marcelo.azevedo.facade
 
-class GameFacade {
+class TurnFacade {
 }

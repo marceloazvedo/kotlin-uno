@@ -1,4 +1,4 @@
-package br.com.marcelo.azevedo.gui
+package br.com.marcelo.azevedo.ui
 
 import br.com.marcelo.azevedo.model.Card
 import br.com.marcelo.azevedo.model.enums.CardType
@@ -38,7 +38,7 @@ class CardUI {
             CardType.JOKER_PLUS_FOUR, CardType.PLUS_TWO -> ""
             else -> " "
         }
-        return "|%s%s%s| ".format(complement, content, card.color.colorPrefix)
+        return "|%s%s%s| ".format(complement, content, card.color.prefix)
     }
 
 }

@@ -1,0 +1,17 @@
+package br.com.marcelo.azevedo.mediator
+
+enum class MediatorEvent {
+
+    CHOSE_CARD,
+    ACTIVATE_SPECIAL_CARD_EFFECT,
+    GET_CARD,
+    NEXT_TURN,
+    UNDER_EFFECT_VERIFICATION,
+    VALIDATE_IF_PLAYER_HAS_CARDS,
+    MAKE_PLAYER_GET_CARDS,
+    REVERT_GAME_DIRECTION,
+    SELECT_COLOR_GAME,
+    PLAYER_BLOCKED,
+    VALIDATE_CARD_PLAYED,
+
+}
