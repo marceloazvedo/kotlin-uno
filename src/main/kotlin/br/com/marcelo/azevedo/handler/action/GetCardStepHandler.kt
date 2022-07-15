@@ -20,7 +20,6 @@ class GetCardStepHandler(private val mediator: Mediator, private val game: Game)
         game.playerInTurn.cards += cards
         game.isSpecialEffectActive = false
         mediator.notify(this, MediatorEvent.NEXT_TURN)
-
     }
 
 }
