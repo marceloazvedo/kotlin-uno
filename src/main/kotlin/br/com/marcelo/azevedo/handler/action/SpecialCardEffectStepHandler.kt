@@ -17,9 +17,15 @@ class SpecialCardEffectStepHandler(private val mediator: Mediator, private val g
             CardType.REVERT -> mediator.notify(this, MediatorEvent.REVERT_GAME_DIRECTION)
             CardType.BLOCK -> mediator.notify(this, MediatorEvent.PLAYER_BLOCKED)
             CardType.PLUS_TWO -> mediator.notify(this, MediatorEvent.MAKE_PLAYER_GET_CARDS)
-            CardType.JOKER -> mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
+            CardType.JOKER -> {
+                game.isSpecialEffectActive = false
+                mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
+            }
             CardType.JOKER_PLUS_FOUR -> mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
-            else -> mediator.notify(this, MediatorEvent.NEXT_TURN)
+            else -> {
+                game.isSpecialEffectActive = false
+                mediator.notify(this, MediatorEvent.NEXT_TURN)
+            }
         }
     }
 }

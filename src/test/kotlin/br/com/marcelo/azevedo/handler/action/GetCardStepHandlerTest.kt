@@ -7,6 +7,7 @@ import br.com.marcelo.azevedo.model.Game
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
+import br.com.marcelo.azevedo.util.generateRandomCardNumber
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -24,11 +25,7 @@ class GetCardStepHandlerTest {
 
     @Test
     fun `Should make player to get one card`() {
-        val cardPlayed = Card(
-            cardType = CardType.NUMBER,
-            color = CardColor.BLUE,
-            value = 9,
-        )
+        val cardPlayed = generateRandomCardNumber()
 
         val game: Game = generateGame(cardPlayed = cardPlayed)
 
@@ -36,7 +33,6 @@ class GetCardStepHandlerTest {
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
-
     }
 
     @Test
@@ -53,7 +49,6 @@ class GetCardStepHandlerTest {
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
-
     }
 
     @Test
@@ -72,7 +67,6 @@ class GetCardStepHandlerTest {
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
-
     }
 
 }
