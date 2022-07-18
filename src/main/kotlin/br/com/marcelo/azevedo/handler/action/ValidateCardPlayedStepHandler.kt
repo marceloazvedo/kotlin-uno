@@ -17,7 +17,7 @@ class ValidateCardPlayedStepHandler(
         val cardSelectedToPlay = game.cardSelectToPlay
 
         if (cardSelectedToPlay == null) {
-            mediator.notify(this, MediatorEvent.NEXT_TURN)
+            mediator.notify(this, MediatorEvent.CHOSE_CARD)
             return
         }
 

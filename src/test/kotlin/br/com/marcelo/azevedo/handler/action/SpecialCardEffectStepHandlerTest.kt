@@ -1,27 +1,17 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.mediator.Mediator
+import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
 import br.com.marcelo.azevedo.model.Game
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
-import io.mockk.every
-import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-internal class SpecialCardEffectStepHandlerTest {
-
-    private val mediator: Mediator = mockk()
-
-    @BeforeEach
-    fun setupTest() {
-        every { mediator.notify(any(), any()) } returns Unit
-    }
+class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
 
     @Test
     fun `Should revert the game direction after this step handler`() {

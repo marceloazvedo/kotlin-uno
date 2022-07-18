@@ -1,6 +1,6 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.mediator.Mediator
+import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
 import br.com.marcelo.azevedo.model.Game
@@ -8,20 +8,10 @@ import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
 import br.com.marcelo.azevedo.util.generateRandomCardNumber
-import io.mockk.every
-import io.mockk.mockk
 import io.mockk.verify
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class GetCardStepHandlerTest {
-
-    private val mediator: Mediator = mockk()
-
-    @BeforeEach
-    fun setupTest() {
-        every { mediator.notify(any(), any()) } returns Unit
-    }
+class GetCardStepHandlerTest: StepHandlerTest() {
 
     @Test
     fun `Should make player to get one card`() {
