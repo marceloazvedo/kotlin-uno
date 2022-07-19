@@ -3,25 +3,25 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandler
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardType
 
-class GetCardStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game, mediator) {
+class GetCardStepHandler(private val mediator: Mediator, private val gameContext: GameContext) : StepHandler(gameContext, mediator) {
 
     override fun execute() {
-        val cardPlayed = game.lastCardPlayed()
+        val cardPlayed = gameContext.lastCardPlayed()
         val quantityOfCardsToGet =
-            if (cardPlayed.isSpecial() || game.isSpecialEffectActive)
+            if (cardPlayed.isSpecial() || gameContext.isSpecialEffectActive)
                 when (cardPlayed.cardType) {
                     CardType.JOKER_PLUS_FOUR -> 4
                     CardType.PLUS_TWO -> 2
                     else -> 1
                 }
             else 1
-        val cards = game.remainingCards.take(quantityOfCardsToGet)
-        game.remainingCards = game.remainingCards.drop(quantityOfCardsToGet).toMutableList()
-        game.playerInTurn.cards += cards
-        game.isSpecialEffectActive = false
+        val cards = gameContext.remainingCards.take(quantityOfCardsToGet)
+        gameContext.remainingCards = gameContext.remainingCards.drop(quantityOfCardsToGet).toMutableList()
+        gameContext.playerInTurn.cards += cards
+        gameContext.isSpecialEffectActive = false
         mediator.notify(this, MediatorEvent.NEXT_TURN)
     }
 

@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.model.enums.GameDirection
@@ -22,20 +22,20 @@ class RevertGameDirectionStepHandlerTest : StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        game.direction = GameDirection.FORWARD
-        game.isSpecialEffectActive = true
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        gameContext.direction = GameDirection.FORWARD
+        gameContext.isSpecialEffectActive = true
 
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        assertEquals(GameDirection.FORWARD, game.direction)
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
 
-        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, game)
+        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, gameContext)
         revertGameDirectionStepHandler.execute()
 
         verify { mediator.notify(revertGameDirectionStepHandler, MediatorEvent.NEXT_TURN) }
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(GameDirection.BACKWARD, game.direction)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(GameDirection.BACKWARD, gameContext.direction)
     }
 
     @Test
@@ -46,19 +46,19 @@ class RevertGameDirectionStepHandlerTest : StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        game.direction = GameDirection.BACKWARD
-        game.isSpecialEffectActive = true
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        gameContext.direction = GameDirection.BACKWARD
+        gameContext.isSpecialEffectActive = true
 
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        assertEquals(GameDirection.BACKWARD, game.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        assertEquals(GameDirection.BACKWARD, gameContext.direction)
 
-        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, game)
+        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, gameContext)
         revertGameDirectionStepHandler.execute()
 
         verify { mediator.notify(revertGameDirectionStepHandler, MediatorEvent.NEXT_TURN) }
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(GameDirection.FORWARD, game.direction)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
     }
 
 }

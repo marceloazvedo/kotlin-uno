@@ -4,21 +4,21 @@ import br.com.marcelo.azevedo.handler.Handler
 import br.com.marcelo.azevedo.handler.action.*
 import br.com.marcelo.azevedo.handler.input.ChoseCardStepHandler
 import br.com.marcelo.azevedo.handler.input.SelectColorStepHandler
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 
-class GameMediator(game: Game) : Mediator {
+class GameMediator(gameContext: GameContext) : Mediator {
 
-    private val choseCardStepHandler = ChoseCardStepHandler(this, game)
-    private val specialCardEffectStepHandler = SpecialCardEffectStepHandler(this, game)
-    private val getCardStepHandler = GetCardStepHandler(this, game)
-    private val underEffectVerificationStepHandler = UnderEffectVerificationStepHandler(this, game)
-    private val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(this, game)
-    private val validateCardPlayedStepHandler = ValidateCardPlayedStepHandler(this, game)
-    private val selectColorStepHandler = SelectColorStepHandler(this, game)
-    private val playerBlockedStepHandler = PlayerBlockedStepHandler(this, game)
-    private val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(this, game)
-    private val nextTurnStepHandler = NextTurnStepHandler(this, game)
-    private val endGameStepHandler = EndGameStepHandler(this, game)
+    private val choseCardStepHandler = ChoseCardStepHandler(this, gameContext)
+    private val specialCardEffectStepHandler = SpecialCardEffectStepHandler(this, gameContext)
+    private val getCardStepHandler = GetCardStepHandler(this, gameContext)
+    private val underEffectVerificationStepHandler = UnderEffectVerificationStepHandler(this, gameContext)
+    private val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(this, gameContext)
+    private val validateCardPlayedStepHandler = ValidateCardPlayedStepHandler(this, gameContext)
+    private val selectColorStepHandler = SelectColorStepHandler(this, gameContext)
+    private val playerBlockedStepHandler = PlayerBlockedStepHandler(this, gameContext)
+    private val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(this, gameContext)
+    private val nextTurnStepHandler = NextTurnStepHandler(this, gameContext)
+    private val endGameStepHandler = EndGameStepHandler(this, gameContext)
 
     init {
         notify(underEffectVerificationStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION)

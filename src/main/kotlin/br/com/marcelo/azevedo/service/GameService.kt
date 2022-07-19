@@ -5,16 +5,16 @@ import br.com.marcelo.azevedo.exceptions.InvalidCardIndexPlayed
 import br.com.marcelo.azevedo.exceptions.InvalidCardPlayed
 import br.com.marcelo.azevedo.model.Card
 import br.com.marcelo.azevedo.model.Deck
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.Player
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
 class GameService {
 
-    fun createGame(players: List<Player>, deck: Deck): Game {
+    fun createGame(players: List<Player>, deck: Deck): GameContext {
         val firstGameCard = deck.cards.first()
-        return Game(
+        return GameContext(
             playerInTurn = players.first(),
             players = players,
             remainingCards = deck.cards.drop(1).toMutableList(),
@@ -23,25 +23,25 @@ class GameService {
         )
     }
 
-    fun playCard(game: Game, cardIndexPlayed: Int): Game {
-        val previousCard = game.lastCardPlayed()
+    fun playCard(gameContext: GameContext, cardIndexPlayed: Int): GameContext {
+        val previousCard = gameContext.lastCardPlayed()
         val cardPlayed =
             try {
-                game.playerInTurn.cards[cardIndexPlayed]
+                gameContext.playerInTurn.cards[cardIndexPlayed]
             } catch (_: IndexOutOfBoundsException) {
                 throw InvalidCardIndexPlayed(cardIndexPlayed)
             }
         validateCardToPlaay(previousCard, cardPlayed)
 
-        game.turnColor = cardPlayed.color
+        gameContext.turnColor = cardPlayed.color
 
-        if(cardPlayed.isSpecial()) activeSpecialEffect(game, cardPlayed)
+        if(cardPlayed.isSpecial()) activeSpecialEffect(gameContext, cardPlayed)
 
-        game.playerInTurn.cards.remove(cardPlayed)
-        game.playedCards.add(cardPlayed)
+        gameContext.playerInTurn.cards.remove(cardPlayed)
+        gameContext.playedCards.add(cardPlayed)
 
-        passTurnNextPlayer(game)
-        return game
+        passTurnNextPlayer(gameContext)
+        return gameContext
     }
 
     private fun validateCardToPlaay(previousCard: Card, cardPlayed: Card) {
@@ -59,17 +59,17 @@ class GameService {
         }
     }
 
-    private fun getNewCardAndFinishTurn(game: Game) {
-        val card = game.remainingCards.first()
-        game.remainingCards = game.remainingCards.drop(1).toMutableList()
-        game.playerInTurn.cards += card
-        passTurnNextPlayer(game)
+    private fun getNewCardAndFinishTurn(gameContext: GameContext) {
+        val card = gameContext.remainingCards.first()
+        gameContext.remainingCards = gameContext.remainingCards.drop(1).toMutableList()
+        gameContext.playerInTurn.cards += card
+        passTurnNextPlayer(gameContext)
         throw GetNewCardAndFisnishTurnException(card)
     }
 
-    fun hasCardToPlay(game: Game) {
-        val previousCard = game.lastCardPlayed()
-        val noHasCard: Boolean = game.playerInTurn.cards.none {
+    fun hasCardToPlay(gameContext: GameContext) {
+        val previousCard = gameContext.lastCardPlayed()
+        val noHasCard: Boolean = gameContext.playerInTurn.cards.none {
             val isValidCard = try {
                 validateCardToPlaay(previousCard, it)
                 true
@@ -78,25 +78,25 @@ class GameService {
             }
             isValidCard
         }
-        if (noHasCard) getNewCardAndFinishTurn(game)
+        if (noHasCard) getNewCardAndFinishTurn(gameContext)
     }
 
-    private fun passTurnNextPlayer(game: Game) {
-        val playerIndex = game.players.indexOf(game.playerInTurn)
-        val nextIndex = if (game.direction == GameDirection.FORWARD) {
+    private fun passTurnNextPlayer(gameContext: GameContext) {
+        val playerIndex = gameContext.players.indexOf(gameContext.playerInTurn)
+        val nextIndex = if (gameContext.direction == GameDirection.FORWARD) {
             playerIndex.inc()
         } else {
             playerIndex.dec()
         }.let { index ->
-            if (index < 0) game.players.size - 1
-            else if (index >= game.players.size) 0
+            if (index < 0) gameContext.players.size - 1
+            else if (index >= gameContext.players.size) 0
             else index
         }
-        val nextPlayer = game.players[nextIndex]
-        game.playerInTurn = nextPlayer
+        val nextPlayer = gameContext.players[nextIndex]
+        gameContext.playerInTurn = nextPlayer
     }
 
-    private fun activeSpecialEffect(game: Game, cardPlayed: Card) {
+    private fun activeSpecialEffect(gameContext: GameContext, cardPlayed: Card) {
 
     }
 

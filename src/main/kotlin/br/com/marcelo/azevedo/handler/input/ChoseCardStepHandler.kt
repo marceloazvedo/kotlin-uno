@@ -5,12 +5,12 @@ import br.com.marcelo.azevedo.handler.StepHandler
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 
 class ChoseCardStepHandler(
     val mediator: Mediator,
-    val game: Game,
-) : StepHandler(game, mediator) {
+    val gameContext: GameContext,
+) : StepHandler(gameContext, mediator) {
 
     private val cardUI = CardUI()
 
@@ -30,17 +30,17 @@ class ChoseCardStepHandler(
                 The turn card is:
             """.trimIndent()
         )
-        println(cardUI.printCards(listOf(game.lastCardPlayed())))
-        println("Is turn of ${game.playerInTurn.name}")
-        println("${game.remainingCards.size} cards left.")
+        println(cardUI.printCards(listOf(gameContext.lastCardPlayed())))
+        println("Is turn of ${gameContext.playerInTurn.name}")
+        println("${gameContext.remainingCards.size} cards left.")
         var cardSelected: Card? = null
         while (cardSelected == null) {
             try {
-                println(cardUI.printCards(game.playerInTurn.cards))
-                println("The turn color is: ${game.turnColor.name}")
-                print("Please, select your card ${game.playerInTurn.name}: ")
+                println(cardUI.printCards(gameContext.playerInTurn.cards))
+                println("The turn color is: ${gameContext.turnColor.name}")
+                print("Please, select your card ${gameContext.playerInTurn.name}: ")
                 val cardIndex = readln().toInt() - 1
-                cardSelected = game.playerInTurn.cards[cardIndex]
+                cardSelected = gameContext.playerInTurn.cards[cardIndex]
             } catch (error: Exception) {
                 println(
                     """
@@ -57,7 +57,7 @@ class ChoseCardStepHandler(
                 )
             }
         }
-        game.cardSelectToPlay = cardSelected
+        gameContext.cardSelectToPlay = cardSelected
         mediator.notify(this, MediatorEvent.VALIDATE_CARD_PLAYED)
     }
 }

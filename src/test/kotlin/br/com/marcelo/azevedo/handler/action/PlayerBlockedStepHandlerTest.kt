@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
@@ -21,14 +21,14 @@ class PlayerBlockedStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, game)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, gameContext)
         playerBlockedStepHandler.execute()
 
         verify { mediator.notify(playerBlockedStepHandler, MediatorEvent.NEXT_TURN) }
-        assertEquals(false, game.isSpecialEffectActive)
+        assertEquals(false, gameContext.isSpecialEffectActive)
     }
 
     @Test
@@ -39,14 +39,14 @@ class PlayerBlockedStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed).copy(isSpecialEffectActive = true)
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, game)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed).copy(isSpecialEffectActive = true)
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, gameContext)
         playerBlockedStepHandler.execute()
 
         verify { mediator.notify(playerBlockedStepHandler, MediatorEvent.NEXT_TURN) }
-        assertEquals(false, game.isSpecialEffectActive)
+        assertEquals(false, gameContext.isSpecialEffectActive)
     }
 
 }

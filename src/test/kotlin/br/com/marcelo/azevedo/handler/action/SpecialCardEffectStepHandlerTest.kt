@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
@@ -21,16 +21,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.REVERT_GAME_DIRECTION) }
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
     @Test
@@ -41,16 +41,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.PLAYER_BLOCKED) }
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
     @Test
@@ -61,16 +61,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.MAKE_PLAYER_GET_CARDS) }
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
     @Test
@@ -81,16 +81,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.SELECT_COLOR_GAME) }
-        assertEquals(true, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(true, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
     @Test
@@ -101,16 +101,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.SELECT_COLOR_GAME) }
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
     @Test
@@ -121,16 +121,16 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
             value = 9,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, game)
+        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.NEXT_TURN) }
-        assertEquals(false, game.isSpecialEffectActive)
-        assertEquals(cardPlayed, game.lastCardPlayed())
+        assertEquals(false, gameContext.isSpecialEffectActive)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
 
 }

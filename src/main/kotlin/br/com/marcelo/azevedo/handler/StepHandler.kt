@@ -2,17 +2,17 @@ package br.com.marcelo.azevedo.handler
 
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 
 abstract class StepHandler(
-    private val game: Game,
+    private val gameContext: GameContext,
     private val mediator: Mediator
 ) : Handler {
 
     protected val toExecute = mutableListOf<Handler>()
 
     abstract override fun execute()
-    override fun getHandlerGame(): Game = this.game
+    override fun getHandlerGame(): GameContext = this.gameContext
 
     override fun setNext(handlerStrategy: Handler) {
         toExecute.add(handlerStrategy)

@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.util.generateGame
@@ -17,9 +17,9 @@ class GetCardStepHandlerTest: StepHandlerTest() {
     fun `Should make player to get one card`() {
         val cardPlayed = generateRandomCardNumber()
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
 
-        val getCardStepHandler = GetCardStepHandler(mediator, game)
+        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
@@ -33,9 +33,9 @@ class GetCardStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
 
-        val getCardStepHandler = GetCardStepHandler(mediator, game)
+        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
@@ -49,11 +49,11 @@ class GetCardStepHandlerTest: StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(
+        val gameContext: GameContext = generateGame(
             cardPlayed = cardPlayed
         )
 
-        val getCardStepHandler = GetCardStepHandler(mediator, game)
+        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
         getCardStepHandler.execute()
 
         verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }

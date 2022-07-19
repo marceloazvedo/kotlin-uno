@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.handler.action
 import br.com.marcelo.azevedo.handler.StepHandlerTest
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.Player
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
@@ -24,19 +24,19 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed)
-        assertEquals(GameDirection.FORWARD, game.direction)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        val playerInTurn = game.playerInTurn
-        val nextPlayer = getNextPlayer(game)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, game)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        val playerInTurn = gameContext.playerInTurn
+        val nextPlayer = getNextPlayer(gameContext)
+        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
-        val playerInTurnAfterExecutation = game.playerInTurn
+        val playerInTurnAfterExecutation = gameContext.playerInTurn
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        assertEquals(GameDirection.FORWARD, game.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)
         assertEquals(nextPlayer, playerInTurnAfterExecutation)
     }
@@ -49,19 +49,19 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed).copy(direction = GameDirection.BACKWARD)
-        assertEquals(GameDirection.BACKWARD, game.direction)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        val playerInTurn = game.playerInTurn
-        val nextPlayer = getNextPlayer(game)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, game)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed).copy(direction = GameDirection.BACKWARD)
+        assertEquals(GameDirection.BACKWARD, gameContext.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        val playerInTurn = gameContext.playerInTurn
+        val nextPlayer = getNextPlayer(gameContext)
+        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
-        val playerInTurnAfterExecutation = game.playerInTurn
+        val playerInTurnAfterExecutation = gameContext.playerInTurn
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        assertEquals(GameDirection.BACKWARD, game.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        assertEquals(GameDirection.BACKWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)
         assertEquals(nextPlayer, playerInTurnAfterExecutation)
     }
@@ -74,33 +74,33 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
             value = -1,
         )
 
-        val game: Game = generateGame(cardPlayed = cardPlayed).run { this.copy(playerInTurn = this.players.last()) }
-        assertEquals(GameDirection.FORWARD, game.direction)
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        val playerInTurn = game.playerInTurn
-        val nextPlayer = getNextPlayer(game)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, game)
+        val gameContext: GameContext = generateGame(cardPlayed = cardPlayed).run { this.copy(playerInTurn = this.players.last()) }
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        val playerInTurn = gameContext.playerInTurn
+        val nextPlayer = getNextPlayer(gameContext)
+        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
-        val playerInTurnAfterExecutation = game.playerInTurn
+        val playerInTurnAfterExecutation = gameContext.playerInTurn
 
         verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
-        assertEquals(cardPlayed, game.lastCardPlayed())
-        assertEquals(GameDirection.FORWARD, game.direction)
+        assertEquals(cardPlayed, gameContext.lastCardPlayed())
+        assertEquals(GameDirection.FORWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)
         assertEquals(nextPlayer, playerInTurnAfterExecutation)
     }
 
-    private fun getNextPlayer(game: Game): Player =
-        game.players.indexOf(game.playerInTurn).run {
+    private fun getNextPlayer(gameContext: GameContext): Player =
+        gameContext.players.indexOf(gameContext.playerInTurn).run {
             val nextIndex =
-                if (game.direction == GameDirection.FORWARD) this.inc()
+                if (gameContext.direction == GameDirection.FORWARD) this.inc()
                 else this.dec()
             val index =
-                if (nextIndex < 0) game.players.size - 1
-                else if (nextIndex >= game.players.size) 0
+                if (nextIndex < 0) gameContext.players.size - 1
+                else if (nextIndex >= gameContext.players.size) 0
                 else nextIndex
-            game.players[index]
+            gameContext.players[index]
         }
 
 }

@@ -1,15 +1,15 @@
 package br.com.marcelo.azevedo.util
 
 import br.com.marcelo.azevedo.model.Card
-import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.Player
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.CardType
 
-fun generateGame(cardPlayed: Card): Game {
+fun generateGame(cardPlayed: Card): GameContext {
     val players = mutableListOf(geneatePlayer(), geneatePlayer(), geneatePlayer(), geneatePlayer())
 
-    return Game(
+    return GameContext(
         playedCards = mutableListOf(cardPlayed),
         turnColor = generateRandomColor(),
         players = players,

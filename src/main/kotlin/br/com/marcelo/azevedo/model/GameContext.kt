@@ -3,7 +3,7 @@ package br.com.marcelo.azevedo.model
 import br.com.marcelo.azevedo.model.enums.CardColor
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
-data class Game(
+data class GameContext(
     var direction: GameDirection = GameDirection.FORWARD,
     var remainingCards: MutableList<Card>,
     var playedCards: MutableList<Card>,
