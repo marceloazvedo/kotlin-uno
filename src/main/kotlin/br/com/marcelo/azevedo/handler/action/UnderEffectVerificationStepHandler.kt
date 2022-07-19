@@ -9,7 +9,7 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class UnderEffectVerificationStepHandler(
     private val mediator: Mediator,
     private val game: Game,
-) : StepHandler(game) {
+) : StepHandler(game, mediator) {
 
     override fun execute() {
         val lastCardPlayed = game.lastCardPlayed()

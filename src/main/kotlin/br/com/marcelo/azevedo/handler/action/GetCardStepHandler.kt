@@ -6,15 +6,18 @@ import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Game
 import br.com.marcelo.azevedo.model.enums.CardType
 
-class GetCardStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game) {
+class GetCardStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game, mediator) {
 
     override fun execute() {
         val cardPlayed = game.lastCardPlayed()
-        val quantityOfCardsToGet = when (cardPlayed.cardType) {
-            CardType.JOKER_PLUS_FOUR -> 4
-            CardType.PLUS_TWO -> 2
-            else -> 1
-        }
+        val quantityOfCardsToGet =
+            if (cardPlayed.isSpecial() || game.isSpecialEffectActive)
+                when (cardPlayed.cardType) {
+                    CardType.JOKER_PLUS_FOUR -> 4
+                    CardType.PLUS_TWO -> 2
+                    else -> 1
+                }
+            else 1
         val cards = game.remainingCards.take(quantityOfCardsToGet)
         game.remainingCards = game.remainingCards.drop(quantityOfCardsToGet).toMutableList()
         game.playerInTurn.cards += cards

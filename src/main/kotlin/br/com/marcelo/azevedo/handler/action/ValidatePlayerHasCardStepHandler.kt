@@ -11,7 +11,7 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class ValidatePlayerHasCardStepHandler(
     private val mediator: Mediator,
     private val game: Game,
-) : StepHandler(game) {
+) : StepHandler(game, mediator) {
 
     override fun execute() {
         val previousCard = game.lastCardPlayed()
@@ -24,7 +24,10 @@ class ValidatePlayerHasCardStepHandler(
             }
             isValidCard
         }
-        if (hasNoOneCard) mediator.notify(this, MediatorEvent.GET_CARD)
+        if (hasNoOneCard) {
+            println("\nThe player ${game.playerInTurn.name} has no cards to play!\n")
+            mediator.notify(this, MediatorEvent.GET_CARD)
+        }
         else mediator.notify(this, MediatorEvent.CHOSE_CARD)
     }
 

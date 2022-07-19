@@ -1,9 +1,9 @@
 package br.com.marcelo.azevedo.mediator
 
-import br.com.marcelo.azevedo.handler.HandlerStrategy
+import br.com.marcelo.azevedo.handler.Handler
 
 interface Mediator {
 
-    fun notify(sender: HandlerStrategy, event: MediatorEvent)
+    fun notify(sender: Handler, vararg event: MediatorEvent)
 
 }

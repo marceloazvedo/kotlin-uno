@@ -11,26 +11,11 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class SelectColorStepHandler(
     private val mediator: Mediator,
     private val game: Game,
-): StepHandler(game) {
+): StepHandler(game, mediator) {
 
     private val cardUI = CardUI()
 
     override fun execute() {
-        println(
-            """
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                Your cards are: ${cardUI.printCards(game.playerInTurn.cards)}
-            """.trimIndent()
-        )
         var cardColor: CardColor? = null
         while (cardColor == null) {
             try {
@@ -58,7 +43,10 @@ class SelectColorStepHandler(
             }
         }
         game.turnColor = cardColor
-        if (game.lastCardPlayed().cardType == CardType.JOKER_PLUS_FOUR) mediator.notify(this, MediatorEvent.MAKE_PLAYER_GET_CARDS)
+        if (game.lastCardPlayed().cardType == CardType.JOKER_PLUS_FOUR) {
+            game.isSpecialEffectActive = true
+            mediator.notify(this, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
+        }
         else {
             game.isSpecialEffectActive = false
             mediator.notify(this, MediatorEvent.NEXT_TURN)

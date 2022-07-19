@@ -10,7 +10,7 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class ValidateCardPlayedStepHandler(
     private val mediator: Mediator,
     private val game: Game,
-) : StepHandler(game) {
+) : StepHandler(game, mediator) {
 
     override fun execute() {
         val previousCard = game.lastCardPlayed()
@@ -42,7 +42,9 @@ class ValidateCardPlayedStepHandler(
         game.playerInTurn.cards.remove(cardSelectedToPlay)
         game.playedCards.add(cardSelectedToPlay)
 
-        if (cardSelectedToPlay.isSpecial()) {
+        if (game.playerInTurn.cards.isEmpty()) {
+            mediator.notify(this, MediatorEvent.END_GAME)
+        } else if (cardSelectedToPlay.isSpecial()) {
             mediator.notify(this, MediatorEvent.ACTIVATE_SPECIAL_CARD_EFFECT)
         } else {
             mediator.notify(this, MediatorEvent.NEXT_TURN)

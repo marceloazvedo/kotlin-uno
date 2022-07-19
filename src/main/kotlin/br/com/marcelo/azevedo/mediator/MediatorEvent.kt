@@ -13,5 +13,6 @@ enum class MediatorEvent {
     SELECT_COLOR_GAME,
     PLAYER_BLOCKED,
     VALIDATE_CARD_PLAYED,
+    END_GAME,
 
 }

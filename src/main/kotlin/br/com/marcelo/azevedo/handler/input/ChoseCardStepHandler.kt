@@ -10,7 +10,7 @@ import br.com.marcelo.azevedo.model.Game
 class ChoseCardStepHandler(
     val mediator: Mediator,
     val game: Game,
-) : StepHandler(game) {
+) : StepHandler(game, mediator) {
 
     private val cardUI = CardUI()
 
@@ -27,14 +27,17 @@ class ChoseCardStepHandler(
                 
                 
                 
-                The turn card is: ${cardUI.printCards(listOf(game.lastCardPlayed()))}
-                Is turn of ${game.playerInTurn.name}
+                The turn card is:
             """.trimIndent()
         )
+        println(cardUI.printCards(listOf(game.lastCardPlayed())))
+        println("Is turn of ${game.playerInTurn.name}")
+        println("${game.remainingCards.size} cards left.")
         var cardSelected: Card? = null
         while (cardSelected == null) {
             try {
                 println(cardUI.printCards(game.playerInTurn.cards))
+                println("The turn color is: ${game.turnColor.name}")
                 print("Please, select your card ${game.playerInTurn.name}: ")
                 val cardIndex = readln().toInt() - 1
                 cardSelected = game.playerInTurn.cards[cardIndex]

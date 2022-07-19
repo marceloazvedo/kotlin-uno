@@ -2,9 +2,11 @@ package br.com.marcelo.azevedo.handler
 
 import br.com.marcelo.azevedo.model.Game
 
-interface HandlerStrategy {
+interface Handler {
 
     fun getHandlerGame(): Game
     fun execute()
+
+    fun setNext(handlerStrategy: Handler)
 
 }

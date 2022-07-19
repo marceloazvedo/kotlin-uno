@@ -4,9 +4,10 @@ import br.com.marcelo.azevedo.handler.StepHandler
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Game
+import br.com.marcelo.azevedo.model.enums.CardType
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
-class NextTurnStepHandler(val mediator: Mediator, val game: Game) : StepHandler(game) {
+class NextTurnStepHandler(val mediator: Mediator, val game: Game) : StepHandler(game, mediator) {
 
     override fun execute() {
         val playerIndex = game.players.indexOf(game.playerInTurn)
@@ -21,6 +22,6 @@ class NextTurnStepHandler(val mediator: Mediator, val game: Game) : StepHandler(
         }
         val nextPlayer = game.players[nextIndex]
         game.playerInTurn = nextPlayer
-        mediator.notify(this, MediatorEvent.UNDER_EFFECT_VERIFICATION)
+        executeNextAndNotify(MediatorEvent.UNDER_EFFECT_VERIFICATION)
     }
 }

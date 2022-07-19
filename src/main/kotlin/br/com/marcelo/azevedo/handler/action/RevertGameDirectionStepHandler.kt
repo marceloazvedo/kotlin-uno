@@ -6,7 +6,7 @@ import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Game
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
-class RevertGameDirectionStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game) {
+class RevertGameDirectionStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game, mediator) {
 
     override fun execute() {
         game.direction =

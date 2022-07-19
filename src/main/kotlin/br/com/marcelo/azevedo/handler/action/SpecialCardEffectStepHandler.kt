@@ -6,7 +6,7 @@ import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.Game
 import br.com.marcelo.azevedo.model.enums.CardType
 
-class SpecialCardEffectStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game) {
+class SpecialCardEffectStepHandler(private val mediator: Mediator, private val game: Game) : StepHandler(game, mediator) {
 
     override fun execute() {
 
@@ -15,8 +15,8 @@ class SpecialCardEffectStepHandler(private val mediator: Mediator, private val g
 
         when (cardPlayed.cardType) {
             CardType.REVERT -> mediator.notify(this, MediatorEvent.REVERT_GAME_DIRECTION)
-            CardType.BLOCK -> mediator.notify(this, MediatorEvent.PLAYER_BLOCKED)
-            CardType.PLUS_TWO -> mediator.notify(this, MediatorEvent.MAKE_PLAYER_GET_CARDS)
+            CardType.BLOCK -> mediator.notify(this, MediatorEvent.NEXT_TURN)
+            CardType.PLUS_TWO -> mediator.notify(this, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
             CardType.JOKER -> {
                 game.isSpecialEffectActive = false
                 mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
