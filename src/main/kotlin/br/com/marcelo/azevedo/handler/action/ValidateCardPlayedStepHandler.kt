@@ -22,20 +22,15 @@ class ValidateCardPlayedStepHandler(
         }
 
         try {
+            if (cardSelectedToPlay.cardType != previousCard.cardType && cardSelectedToPlay.color != gameContext.turnColor) {
+                throw InvalidCardPlayed(cardSelectedToPlay)
+            }
             if (cardSelectedToPlay.cardType == CardType.NUMBER && !(gameContext.turnColor == cardSelectedToPlay.color || previousCard.value == cardSelectedToPlay.value)) {
-                throw InvalidCardPlayed(cardSelectedToPlay)
-            }
-            if (cardSelectedToPlay.cardType == CardType.BLOCK && gameContext.turnColor != cardSelectedToPlay.color) {
-                throw InvalidCardPlayed(cardSelectedToPlay)
-            }
-            if (cardSelectedToPlay.cardType == CardType.REVERT && gameContext.turnColor != cardSelectedToPlay.color) {
-                throw InvalidCardPlayed(cardSelectedToPlay)
-            }
-            if (cardSelectedToPlay.cardType == CardType.PLUS_TWO && gameContext.turnColor != cardSelectedToPlay.color) {
                 throw InvalidCardPlayed(cardSelectedToPlay)
             }
         } catch (_: Exception) {
             mediator.notify(this, MediatorEvent.CHOSE_CARD)
+            return
         }
 
         gameContext.turnColor = cardSelectedToPlay.color
