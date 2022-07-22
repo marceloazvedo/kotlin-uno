@@ -10,7 +10,7 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class ValidateCardPlayedStepHandler(
     private val mediator: Mediator,
     private val gameContext: GameContext,
-) : StepHandler(gameContext, mediator) {
+) : StepHandlerCardValidator(gameContext, mediator) {
 
     override fun execute() {
         val previousCard = gameContext.lastCardPlayed()
@@ -21,14 +21,8 @@ class ValidateCardPlayedStepHandler(
             return
         }
 
-        try {
-            if (cardSelectedToPlay.cardType != previousCard.cardType && cardSelectedToPlay.color != gameContext.turnColor) {
-                throw InvalidCardPlayed(cardSelectedToPlay)
-            }
-            if (cardSelectedToPlay.cardType == CardType.NUMBER && !(gameContext.turnColor == cardSelectedToPlay.color || previousCard.value == cardSelectedToPlay.value)) {
-                throw InvalidCardPlayed(cardSelectedToPlay)
-            }
-        } catch (_: Exception) {
+        if (!validateCardToPlaay(gameContext.turnColor, previousCard, cardSelectedToPlay)) {
+            println("This card is invalid! Please, select other.")
             mediator.notify(this, MediatorEvent.CHOSE_CARD)
             return
         }
