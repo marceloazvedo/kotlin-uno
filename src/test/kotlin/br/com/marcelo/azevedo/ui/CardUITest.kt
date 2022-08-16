@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 
 class CardUITest {
 
-    val cardUI = CardUI()
+    private val cardUI = CardUI()
 
     @Test
     fun `Shoud print a card type number with color blue and value 2`() {

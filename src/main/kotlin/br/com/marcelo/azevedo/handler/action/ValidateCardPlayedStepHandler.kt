@@ -1,11 +1,8 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.exceptions.InvalidCardPlayed
-import br.com.marcelo.azevedo.handler.StepHandler
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
-import br.com.marcelo.azevedo.model.enums.CardType
 
 class ValidateCardPlayedStepHandler(
     private val mediator: Mediator,
