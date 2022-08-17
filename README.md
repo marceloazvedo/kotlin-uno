@@ -19,4 +19,4 @@ Na IDE Intellij, vá até o arquivo [kotlin/br/com/marcelo/azevedo/KotlinUnoAppl
 e execute o método `main` clicando com o botão direito do mouse em `Run 'KotlinUnoApplication'...` ou no botão de play
 que deve aparecer.
 
-// TODO: adicionar gif do jogo sendo executado
+![Alt Text](playing_kotlin_uno.gif)
