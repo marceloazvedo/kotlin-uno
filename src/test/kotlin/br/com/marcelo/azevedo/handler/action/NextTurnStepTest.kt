@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
-class NextTurnStepHandlerTest : StepHandlerTest() {
+class NextTurnStepTest : StepHandlerTest() {
 
     @Test
     fun `Should call special effect verification after this step with game direction FORWARD`() {
@@ -29,7 +29,7 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         val playerInTurn = gameContext.playerInTurn
         val nextPlayer = getNextPlayer(gameContext)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
+        val specialCardEffectStepHandler = NextTurnStep(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn
@@ -54,7 +54,7 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         val playerInTurn = gameContext.playerInTurn
         val nextPlayer = getNextPlayer(gameContext)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
+        val specialCardEffectStepHandler = NextTurnStep(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn
@@ -79,7 +79,7 @@ class NextTurnStepHandlerTest : StepHandlerTest() {
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         val playerInTurn = gameContext.playerInTurn
         val nextPlayer = getNextPlayer(gameContext)
-        val specialCardEffectStepHandler = NextTurnStepHandler(mediator, gameContext)
+        val specialCardEffectStepHandler = NextTurnStep(mediator, gameContext)
         specialCardEffectStepHandler.execute()
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn

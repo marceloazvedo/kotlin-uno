@@ -12,7 +12,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class RevertGameDirectionStepHandlerTest : StepHandlerTest() {
+class RevertGameDirectionStepTest : StepHandlerTest() {
 
     @Test
     fun `Should revert game direction to BACKWARD if direction is FORWARD`() {
@@ -30,10 +30,10 @@ class RevertGameDirectionStepHandlerTest : StepHandlerTest() {
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         assertEquals(GameDirection.FORWARD, gameContext.direction)
 
-        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, gameContext)
-        revertGameDirectionStepHandler.execute()
+        val revertGameDirectionStep = RevertGameDirectionStep(mediator, gameContext)
+        revertGameDirectionStep.execute()
 
-        verify { mediator.notify(revertGameDirectionStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(revertGameDirectionStep, MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(GameDirection.BACKWARD, gameContext.direction)
     }
@@ -53,10 +53,10 @@ class RevertGameDirectionStepHandlerTest : StepHandlerTest() {
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         assertEquals(GameDirection.BACKWARD, gameContext.direction)
 
-        val revertGameDirectionStepHandler = RevertGameDirectionStepHandler(mediator, gameContext)
-        revertGameDirectionStepHandler.execute()
+        val revertGameDirectionStep = RevertGameDirectionStep(mediator, gameContext)
+        revertGameDirectionStep.execute()
 
-        verify { mediator.notify(revertGameDirectionStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(revertGameDirectionStep, MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(GameDirection.FORWARD, gameContext.direction)
     }

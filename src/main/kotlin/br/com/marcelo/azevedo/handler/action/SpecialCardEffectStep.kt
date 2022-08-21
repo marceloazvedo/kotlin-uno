@@ -1,12 +1,15 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.handler.StepHandler
+import br.com.marcelo.azevedo.handler.AbstractStep
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardType
 
-class SpecialCardEffectStepHandler(private val mediator: Mediator, private val gameContext: GameContext) : StepHandler(gameContext, mediator) {
+class SpecialCardEffectStep(
+    private val mediator: Mediator,
+    private val gameContext: GameContext
+) : AbstractStep(gameContext, mediator) {
 
     override fun execute() {
 
@@ -21,6 +24,7 @@ class SpecialCardEffectStepHandler(private val mediator: Mediator, private val g
                 gameContext.isSpecialEffectActive = false
                 mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
             }
+
             CardType.JOKER_PLUS_FOUR -> mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
             else -> {
                 gameContext.isSpecialEffectActive = false

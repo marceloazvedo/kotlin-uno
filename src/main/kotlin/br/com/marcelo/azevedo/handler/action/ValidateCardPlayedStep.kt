@@ -4,10 +4,10 @@ import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
 
-class ValidateCardPlayedStepHandler(
+class ValidateCardPlayedStep(
     private val mediator: Mediator,
     private val gameContext: GameContext,
-) : StepHandlerCardValidator(gameContext, mediator) {
+) : CardValidationStep(gameContext, mediator) {
 
     override fun execute() {
         val previousCard = gameContext.lastCardPlayed()

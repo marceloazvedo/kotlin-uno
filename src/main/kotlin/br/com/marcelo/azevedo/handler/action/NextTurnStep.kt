@@ -1,12 +1,15 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.handler.StepHandler
+import br.com.marcelo.azevedo.handler.AbstractStep
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.GameDirection
 
-class NextTurnStepHandler(val mediator: Mediator, val gameContext: GameContext) : StepHandler(gameContext, mediator) {
+class NextTurnStep(
+    private val mediator: Mediator,
+    private val gameContext: GameContext
+) : AbstractStep(gameContext, mediator) {
 
     override fun execute() {
         val playerIndex = gameContext.players.indexOf(gameContext.playerInTurn)

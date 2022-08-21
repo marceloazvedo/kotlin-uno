@@ -4,18 +4,18 @@ import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
 
-abstract class StepHandler(
+abstract class AbstractStep(
     private val gameContext: GameContext,
     private val mediator: Mediator
-) : Handler {
+) : Step {
 
-    protected val toExecute = mutableListOf<Handler>()
+    private val toExecute = mutableListOf<Step>()
 
     abstract override fun execute()
     override fun getHandlerGame(): GameContext = this.gameContext
 
-    override fun setNext(handlerStrategy: Handler) {
-        toExecute.add(handlerStrategy)
+    override fun setNext(stepStrategy: Step) {
+        toExecute.add(stepStrategy)
     }
 
     fun executeNextAndNotify(event: MediatorEvent) {

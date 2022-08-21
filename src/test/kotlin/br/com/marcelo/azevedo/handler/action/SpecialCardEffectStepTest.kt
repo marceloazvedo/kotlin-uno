@@ -11,7 +11,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
+class SpecialCardEffectStepTest: StepHandlerTest() {
 
     @Test
     fun `Should revert the game direction after this step handler`() {
@@ -25,10 +25,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.REVERT_GAME_DIRECTION) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.REVERT_GAME_DIRECTION) }
         assertEquals(true, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
@@ -45,10 +45,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.NEXT_TURN) }
         assertEquals(true, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
@@ -65,10 +65,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS) }
         assertEquals(true, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
@@ -85,10 +85,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.SELECT_COLOR_GAME) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.SELECT_COLOR_GAME) }
         assertEquals(true, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
@@ -105,10 +105,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.SELECT_COLOR_GAME) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.SELECT_COLOR_GAME) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }
@@ -125,10 +125,10 @@ class SpecialCardEffectStepHandlerTest: StepHandlerTest() {
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val specialCardEffectStepHandler = SpecialCardEffectStepHandler(mediator, gameContext)
-        specialCardEffectStepHandler.execute()
+        val specialCardEffectStep = SpecialCardEffectStep(mediator, gameContext)
+        specialCardEffectStep.execute()
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(specialCardEffectStep, MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
     }

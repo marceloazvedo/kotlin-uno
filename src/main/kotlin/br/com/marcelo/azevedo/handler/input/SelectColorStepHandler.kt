@@ -1,7 +1,7 @@
 package br.com.marcelo.azevedo.handler.input
 
 import br.com.marcelo.azevedo.ui.CardUI
-import br.com.marcelo.azevedo.handler.StepHandler
+import br.com.marcelo.azevedo.handler.AbstractStep
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
@@ -11,7 +11,7 @@ import br.com.marcelo.azevedo.model.enums.CardType
 class SelectColorStepHandler(
     private val mediator: Mediator,
     private val gameContext: GameContext,
-): StepHandler(gameContext, mediator) {
+): AbstractStep(gameContext, mediator) {
 
     private val cardUI = CardUI()
 

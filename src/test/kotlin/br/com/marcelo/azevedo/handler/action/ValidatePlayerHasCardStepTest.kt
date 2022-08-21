@@ -11,7 +11,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
+class ValidatePlayerHasCardStepTest : StepHandlerTest() {
 
 
     @Test
@@ -34,10 +34,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
     @Test
@@ -60,10 +60,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
     @Test
@@ -86,10 +86,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
     @Test
@@ -112,10 +112,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
     @Test
@@ -138,10 +138,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
     @Test
@@ -164,10 +164,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.GET_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.GET_CARD) }
     }
 
     @Test
@@ -190,10 +190,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.GET_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.GET_CARD) }
     }
 
     @Test
@@ -216,10 +216,10 @@ class ValidatePlayerHasCardStepHandlerTest : StepHandlerTest() {
 
         Assertions.assertEquals(cardPlayed, gameContext.lastCardPlayed())
 
-        val validatePlayerHasCardStepHandler = ValidatePlayerHasCardStepHandler(mediator, gameContext)
-        validatePlayerHasCardStepHandler.execute()
+        val validatePlayerHasCardStepStepHandler = ValidatePlayerHasCardStep(mediator, gameContext)
+        validatePlayerHasCardStepStepHandler.execute()
 
-        verify { mediator.notify(validatePlayerHasCardStepHandler, MediatorEvent.CHOSE_CARD) }
+        verify { mediator.notify(validatePlayerHasCardStepStepHandler, MediatorEvent.CHOSE_CARD) }
     }
 
 }

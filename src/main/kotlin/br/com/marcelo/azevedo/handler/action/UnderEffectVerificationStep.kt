@@ -1,15 +1,15 @@
 package br.com.marcelo.azevedo.handler.action
 
-import br.com.marcelo.azevedo.handler.StepHandler
+import br.com.marcelo.azevedo.handler.AbstractStep
 import br.com.marcelo.azevedo.mediator.Mediator
 import br.com.marcelo.azevedo.mediator.MediatorEvent
 import br.com.marcelo.azevedo.model.GameContext
 import br.com.marcelo.azevedo.model.enums.CardType
 
-class UnderEffectVerificationStepHandler(
+class UnderEffectVerificationStep(
     private val mediator: Mediator,
     private val gameContext: GameContext,
-) : StepHandler(gameContext, mediator) {
+) : AbstractStep(gameContext, mediator) {
 
     override fun execute() {
         val lastCardPlayed = gameContext.lastCardPlayed()

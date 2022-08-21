@@ -11,7 +11,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class PlayerBlockedStepHandlerTest: StepHandlerTest() {
+class PlayerBlockedStepTest: StepHandlerTest() {
 
     @Test
     fun `Should call next turn when special effect is not active`() {
@@ -24,10 +24,10 @@ class PlayerBlockedStepHandlerTest: StepHandlerTest() {
         val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
-        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, gameContext)
-        playerBlockedStepHandler.execute()
+        val playerBlockedStep = PlayerBlockedStep(mediator, gameContext)
+        playerBlockedStep.execute()
 
-        verify { mediator.notify(playerBlockedStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(playerBlockedStep, MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
     }
 
@@ -42,10 +42,10 @@ class PlayerBlockedStepHandlerTest: StepHandlerTest() {
         val gameContext: GameContext = generateGame(cardPlayed = cardPlayed).copy(isSpecialEffectActive = true)
         assertEquals(true, gameContext.isSpecialEffectActive)
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
-        val playerBlockedStepHandler = PlayerBlockedStepHandler(mediator, gameContext)
-        playerBlockedStepHandler.execute()
+        val playerBlockedStep = PlayerBlockedStep(mediator, gameContext)
+        playerBlockedStep.execute()
 
-        verify { mediator.notify(playerBlockedStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(playerBlockedStep, MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
     }
 

@@ -11,7 +11,7 @@ import br.com.marcelo.azevedo.util.generateRandomCardNumber
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 
-class GetCardStepHandlerTest: StepHandlerTest() {
+class GetCardStepTest: StepHandlerTest() {
 
     @Test
     fun `Should make player to get one card`() {
@@ -19,10 +19,10 @@ class GetCardStepHandlerTest: StepHandlerTest() {
 
         val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
 
-        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
-        getCardStepHandler.execute()
+        val getCardStep = GetCardStep(mediator, gameContext)
+        getCardStep.execute()
 
-        verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
     }
 
     @Test
@@ -35,10 +35,10 @@ class GetCardStepHandlerTest: StepHandlerTest() {
 
         val gameContext: GameContext = generateGame(cardPlayed = cardPlayed)
 
-        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
-        getCardStepHandler.execute()
+        val getCardStep = GetCardStep(mediator, gameContext)
+        getCardStep.execute()
 
-        verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
     }
 
     @Test
@@ -53,10 +53,10 @@ class GetCardStepHandlerTest: StepHandlerTest() {
             cardPlayed = cardPlayed
         )
 
-        val getCardStepHandler = GetCardStepHandler(mediator, gameContext)
-        getCardStepHandler.execute()
+        val getCardStep = GetCardStep(mediator, gameContext)
+        getCardStep.execute()
 
-        verify { mediator.notify(getCardStepHandler, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
     }
 
 }
