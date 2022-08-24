@@ -24,7 +24,7 @@ abstract class AbstractStep(
             handlerToExecute.execute()
             toExecute.removeAt(0)
         }
-        mediator.notify(this, event)
+        mediator.notify(event)
     }
 
 }

@@ -34,7 +34,7 @@ class NextTurnStepTest : StepHandlerTest() {
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
+        verify { mediator.notify(MediatorEvent.UNDER_EFFECT_VERIFICATION) }
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         assertEquals(GameDirection.FORWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)
@@ -59,7 +59,7 @@ class NextTurnStepTest : StepHandlerTest() {
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
+        verify { mediator.notify(MediatorEvent.UNDER_EFFECT_VERIFICATION) }
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         assertEquals(GameDirection.BACKWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)
@@ -84,7 +84,7 @@ class NextTurnStepTest : StepHandlerTest() {
 
         val playerInTurnAfterExecutation = gameContext.playerInTurn
 
-        verify { mediator.notify(specialCardEffectStepHandler, MediatorEvent.UNDER_EFFECT_VERIFICATION) }
+        verify { mediator.notify(MediatorEvent.UNDER_EFFECT_VERIFICATION) }
         assertEquals(cardPlayed, gameContext.lastCardPlayed())
         assertEquals(GameDirection.FORWARD, gameContext.direction)
         assertNotEquals(playerInTurn, playerInTurnAfterExecutation)

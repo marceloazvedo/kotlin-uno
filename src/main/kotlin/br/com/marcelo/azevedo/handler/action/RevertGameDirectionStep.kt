@@ -16,6 +16,6 @@ class RevertGameDirectionStep(
             if (gameContext.direction == GameDirection.FORWARD) GameDirection.BACKWARD
             else GameDirection.FORWARD
         gameContext.isSpecialEffectActive = false
-        mediator.notify(this, MediatorEvent.NEXT_TURN)
+        mediator.notify(MediatorEvent.NEXT_TURN)
     }
 }

@@ -22,7 +22,7 @@ class GetCardStepTest: StepHandlerTest() {
         val getCardStep = GetCardStep(mediator, gameContext)
         getCardStep.execute()
 
-        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
     }
 
     @Test
@@ -38,7 +38,7 @@ class GetCardStepTest: StepHandlerTest() {
         val getCardStep = GetCardStep(mediator, gameContext)
         getCardStep.execute()
 
-        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
     }
 
     @Test
@@ -56,7 +56,7 @@ class GetCardStepTest: StepHandlerTest() {
         val getCardStep = GetCardStep(mediator, gameContext)
         getCardStep.execute()
 
-        verify { mediator.notify(getCardStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
     }
 
 }

@@ -13,7 +13,7 @@ class PlayerBlockedStep(
     override fun execute() {
         println("The player ${gameContext.playerInTurn.name} has blocked!")
         gameContext.isSpecialEffectActive = false
-        mediator.notify(this, MediatorEvent.NEXT_TURN)
+        mediator.notify(MediatorEvent.NEXT_TURN)
     }
 
 }

@@ -15,8 +15,8 @@ class ValidatePlayerHasCardStep(
             gameContext.playerInTurn.cards.none { validateCardToPlaay(gameContext.turnColor, previousCard, it) }
         if (hasNoOneCard) {
             println("\nThe player ${gameContext.playerInTurn.name} has no cards to play!")
-            mediator.notify(this, MediatorEvent.GET_CARD)
-        } else mediator.notify(this, MediatorEvent.CHOSE_CARD)
+            mediator.notify(MediatorEvent.GET_CARD)
+        } else mediator.notify(MediatorEvent.CHOSE_CARD)
     }
 
 }

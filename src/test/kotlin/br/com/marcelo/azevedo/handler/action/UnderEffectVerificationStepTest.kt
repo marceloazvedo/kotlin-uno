@@ -29,7 +29,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
+        verify { mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
         Assertions.assertEquals(false, gameContext.isSpecialEffectActive)
     }
 
@@ -49,7 +49,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
+        verify { mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 
@@ -69,7 +69,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
+        verify { mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 
@@ -89,7 +89,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
+        verify { mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 
@@ -109,7 +109,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.PLAYER_BLOCKED) }
+        verify { mediator.notify(MediatorEvent.PLAYER_BLOCKED) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 
@@ -129,7 +129,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.MAKE_PLAYER_GET_CARDS) }
+        verify { mediator.notify(MediatorEvent.MAKE_PLAYER_GET_CARDS) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 
@@ -149,7 +149,7 @@ class UnderEffectVerificationStepTest : StepHandlerTest() {
         val underEffectVerificationStep = UnderEffectVerificationStep(mediator, gameContext)
         underEffectVerificationStep.execute()
 
-        verify { mediator.notify(underEffectVerificationStep, MediatorEvent.MAKE_PLAYER_GET_CARDS) }
+        verify { mediator.notify(MediatorEvent.MAKE_PLAYER_GET_CARDS) }
         Assertions.assertEquals(true, gameContext.isSpecialEffectActive)
     }
 

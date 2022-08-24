@@ -21,10 +21,10 @@ class GameMediator(gameContext: GameContext) : Mediator {
     private val endGameStep = EndGameStep(this, gameContext)
 
     init {
-        notify(underEffectVerificationStep, MediatorEvent.UNDER_EFFECT_VERIFICATION)
+        notify(MediatorEvent.UNDER_EFFECT_VERIFICATION)
     }
 
-    override fun notify(sender: Step, vararg nextEvent: MediatorEvent) {
+    override fun notify(vararg nextEvent: MediatorEvent) {
         nextEvent.forEachIndexed { index, event ->
             if (index > 0) {
                 underEffectVerificationStep.setNext(getHandler(event))

@@ -33,7 +33,7 @@ class RevertGameDirectionStepTest : StepHandlerTest() {
         val revertGameDirectionStep = RevertGameDirectionStep(mediator, gameContext)
         revertGameDirectionStep.execute()
 
-        verify { mediator.notify(revertGameDirectionStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(GameDirection.BACKWARD, gameContext.direction)
     }
@@ -56,7 +56,7 @@ class RevertGameDirectionStepTest : StepHandlerTest() {
         val revertGameDirectionStep = RevertGameDirectionStep(mediator, gameContext)
         revertGameDirectionStep.execute()
 
-        verify { mediator.notify(revertGameDirectionStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
         assertEquals(GameDirection.FORWARD, gameContext.direction)
     }

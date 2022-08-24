@@ -25,7 +25,7 @@ class GetCardStep(
         gameContext.remainingCards = gameContext.remainingCards.drop(quantityOfCardsToGet).toMutableList()
         gameContext.playerInTurn.cards += cards
         gameContext.isSpecialEffectActive = false
-        mediator.notify(this, MediatorEvent.NEXT_TURN)
+        mediator.notify(MediatorEvent.NEXT_TURN)
     }
 
 }

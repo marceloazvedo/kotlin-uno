@@ -14,13 +14,13 @@ class ValidateCardPlayedStep(
         val cardSelectedToPlay = gameContext.cardSelectToPlay
 
         if (cardSelectedToPlay == null) {
-            mediator.notify(this, MediatorEvent.CHOSE_CARD)
+            mediator.notify(MediatorEvent.CHOSE_CARD)
             return
         }
 
         if (!validateCardToPlaay(gameContext.turnColor, previousCard, cardSelectedToPlay)) {
             println("This card is invalid! Please, select other.")
-            mediator.notify(this, MediatorEvent.CHOSE_CARD)
+            mediator.notify(MediatorEvent.CHOSE_CARD)
             return
         }
 
@@ -29,11 +29,11 @@ class ValidateCardPlayedStep(
         gameContext.playedCards.add(cardSelectedToPlay)
 
         if (gameContext.playerInTurn.cards.isEmpty()) {
-            mediator.notify(this, MediatorEvent.END_GAME)
+            mediator.notify(MediatorEvent.END_GAME)
         } else if (cardSelectedToPlay.isSpecial()) {
-            mediator.notify(this, MediatorEvent.ACTIVATE_SPECIAL_CARD_EFFECT)
+            mediator.notify(MediatorEvent.ACTIVATE_SPECIAL_CARD_EFFECT)
         } else {
-            mediator.notify(this, MediatorEvent.NEXT_TURN)
+            mediator.notify(MediatorEvent.NEXT_TURN)
         }
 
     }

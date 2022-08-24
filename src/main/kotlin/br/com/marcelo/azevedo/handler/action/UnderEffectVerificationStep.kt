@@ -14,17 +14,17 @@ class UnderEffectVerificationStep(
     override fun execute() {
         val lastCardPlayed = gameContext.lastCardPlayed()
         if (!lastCardPlayed.isSpecial()) {
-            mediator.notify(this, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
+            mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
         }
         if (gameContext.isSpecialEffectActive) {
             when (lastCardPlayed.cardType) {
-                CardType.BLOCK -> mediator.notify(this, MediatorEvent.PLAYER_BLOCKED)
-                CardType.PLUS_TWO -> mediator.notify(this, MediatorEvent.MAKE_PLAYER_GET_CARDS)
-                CardType.JOKER_PLUS_FOUR -> mediator.notify(this, MediatorEvent.MAKE_PLAYER_GET_CARDS)
-                else -> mediator.notify(this, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
+                CardType.BLOCK -> mediator.notify(MediatorEvent.PLAYER_BLOCKED)
+                CardType.PLUS_TWO -> mediator.notify(MediatorEvent.MAKE_PLAYER_GET_CARDS)
+                CardType.JOKER_PLUS_FOUR -> mediator.notify(MediatorEvent.MAKE_PLAYER_GET_CARDS)
+                else -> mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
             }
         } else {
-            mediator.notify(this, MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
+            mediator.notify(MediatorEvent.VALIDATE_IF_PLAYER_HAS_CARDS)
         }
 
     }

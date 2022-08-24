@@ -45,11 +45,11 @@ class SelectColorStepHandler(
         gameContext.turnColor = cardColor
         if (gameContext.lastCardPlayed().cardType == CardType.JOKER_PLUS_FOUR) {
             gameContext.isSpecialEffectActive = true
-            mediator.notify(this, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
+            mediator.notify(MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
         }
         else {
             gameContext.isSpecialEffectActive = false
-            mediator.notify(this, MediatorEvent.NEXT_TURN)
+            mediator.notify(MediatorEvent.NEXT_TURN)
         }
     }
 }

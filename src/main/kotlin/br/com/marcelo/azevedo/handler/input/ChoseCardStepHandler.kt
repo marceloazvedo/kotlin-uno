@@ -58,6 +58,6 @@ class ChoseCardStepHandler(
             }
         }
         gameContext.cardSelectToPlay = cardSelected
-        mediator.notify(this, MediatorEvent.VALIDATE_CARD_PLAYED)
+        mediator.notify(MediatorEvent.VALIDATE_CARD_PLAYED)
     }
 }

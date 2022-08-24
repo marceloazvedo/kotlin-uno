@@ -11,8 +11,8 @@ abstract class StepHandlerTest {
 
     @BeforeEach
     fun setupTest() {
+        every { mediator.notify(any()) } returns Unit
         every { mediator.notify(any(), any()) } returns Unit
-        every { mediator.notify(any(), any(), any()) } returns Unit
     }
 
 }

@@ -27,7 +27,7 @@ class PlayerBlockedStepTest: StepHandlerTest() {
         val playerBlockedStep = PlayerBlockedStep(mediator, gameContext)
         playerBlockedStep.execute()
 
-        verify { mediator.notify(playerBlockedStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
     }
 
@@ -45,7 +45,7 @@ class PlayerBlockedStepTest: StepHandlerTest() {
         val playerBlockedStep = PlayerBlockedStep(mediator, gameContext)
         playerBlockedStep.execute()
 
-        verify { mediator.notify(playerBlockedStep, MediatorEvent.NEXT_TURN) }
+        verify { mediator.notify(MediatorEvent.NEXT_TURN) }
         assertEquals(false, gameContext.isSpecialEffectActive)
     }
 

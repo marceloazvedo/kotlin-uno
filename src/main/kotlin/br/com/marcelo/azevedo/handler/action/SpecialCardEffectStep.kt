@@ -17,18 +17,18 @@ class SpecialCardEffectStep(
         gameContext.isSpecialEffectActive = true
 
         when (cardPlayed.cardType) {
-            CardType.REVERT -> mediator.notify(this, MediatorEvent.REVERT_GAME_DIRECTION)
-            CardType.BLOCK -> mediator.notify(this, MediatorEvent.NEXT_TURN)
-            CardType.PLUS_TWO -> mediator.notify(this, MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
+            CardType.REVERT -> mediator.notify(MediatorEvent.REVERT_GAME_DIRECTION)
+            CardType.BLOCK -> mediator.notify(MediatorEvent.NEXT_TURN)
+            CardType.PLUS_TWO -> mediator.notify(MediatorEvent.NEXT_TURN, MediatorEvent.MAKE_PLAYER_GET_CARDS)
             CardType.JOKER -> {
                 gameContext.isSpecialEffectActive = false
-                mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
+                mediator.notify(MediatorEvent.SELECT_COLOR_GAME)
             }
 
-            CardType.JOKER_PLUS_FOUR -> mediator.notify(this, MediatorEvent.SELECT_COLOR_GAME)
+            CardType.JOKER_PLUS_FOUR -> mediator.notify(MediatorEvent.SELECT_COLOR_GAME)
             else -> {
                 gameContext.isSpecialEffectActive = false
-                mediator.notify(this, MediatorEvent.NEXT_TURN)
+                mediator.notify(MediatorEvent.NEXT_TURN)
             }
         }
     }
